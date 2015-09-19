@@ -26,13 +26,13 @@
         <!--タイムライン一覧-->
         <scene sceneID="hOo-Xt-sS5">
             <objects>
-                <tableViewController id="eBq-qr-NQ9" sceneMemberID="viewController">
+                <tableViewController id="eBq-qr-NQ9" customClass="TimeLineTableViewController" customModule="TwitterAppAgain" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="22" sectionFooterHeight="22" id="O6A-CH-2K6">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="120" id="Wuc-Si-W8V">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="120" id="Wuc-Si-W8V" customClass="TimeLineTableViewCell" customModule="TwitterAppAgain" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Wuc-Si-W8V" id="Ont-DF-kZk">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -65,6 +65,8 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="iconImageView" destination="Cur-Zj-eR7" id="9kb-l9-vNn"/>
+                                    <outlet property="tweetLabel" destination="B3e-LR-flo" id="0UG-BR-2qJ"/>
                                     <segue destination="vXZ-lx-hvc" kind="show" id="hGb-C5-FKW"/>
                                 </connections>
                             </tableViewCell>
@@ -82,7 +84,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GeG-K8-WSS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="650" y="413"/>
+            <point key="canvasLocation" x="657" y="413"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="oSh-90-AAi">
