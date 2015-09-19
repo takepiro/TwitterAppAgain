@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import Socail
 
 class TimeLineTableViewController: UITableViewController {
     
-    let dataArray:[[String:String]] = [["title":"タイトル1"],["title":"タイトル2"]]
+    let dataArray:[[String:String]] = [["title":"タイトル1", "image":"http://kilx50b-sonet.c.blog.so-net.ne.jp/_images/blog/_ef1/kilx50b-sonet/0TaylorSwift2.jpg?c=a0"],["title":"タイトル2", "image":"http://www.billboard.com/files/styles/promo_650/public/media/do-no-reuse-taylor-swift-the-beat-bb36-sarah-barlow-billboard-650.jpg?itok=HzQy0yAA"]]
     
     //テーブルの件数を登録
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -25,7 +26,46 @@ class TimeLineTableViewController: UITableViewController {
         
         cell.tweetLabel?.text = dataArray[indexPath.row]["title"]
         
+        if let imageURLString = dataArray[indexPath.row]["image"]
+            , let imageURL = NSURL(string: imageURLString) {
+                cell.iconImageView.sd_setImageWithURL(imageURL)
+        }
+        
         return cell
     }
     
+    @IBAction func tapTweetButton(sender: UIBarButtonItem) {
+        
+        if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter) {
+            
+            let vc = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
+            
+            //CancelもしくはPostを押した際に呼ばれ、投稿画面を閉じる処理を行っています。
+            vc.completionHandler = {(result:SLComposeViewControllerResult) -> () in
+                vc.dismissViewControllerAnimated(true, completion:nil)
+            }
+            
+            ////投稿画面の初期値設定
+            //vc.setInitialText("初期テキストを設定できます。")
+            //vc.addURL(NSURL(string:"シェアURLを設定できます。"))
+            self.presentViewController(vc, animated: true, completion: nil)
+            
+        }else{
+            let alert = UIAlertController(title: "エラー", message: "Twitterアカウントが登録されていません。設定アプリを開きますか？", preferredStyle: UIAlertControllerStyle.Alert)
+            
+            alert.addAction(UIAlertAction(title: "はい", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
+                if let URL = NSURL(string: UIApplicationOpenSettingsURLString){
+                    UIApplication.sharedApplication().openURL(URL)
+                }
+            }))
+            
+            alert.addAction(UIAlertAction(title: "いいえ", style: UIAlertActionStyle.Default, handler:nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+            
+        }
+    }
+    
 }
+
+
+

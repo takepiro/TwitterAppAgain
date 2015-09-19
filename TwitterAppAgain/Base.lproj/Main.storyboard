@@ -78,9 +78,16 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="タイムライン一覧" id="hLc-Lx-SLa">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="UEr-ZG-i1K"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="UEr-ZG-i1K">
+                            <connections>
+                                <action selector="tapTweetButton:" destination="eBq-qr-NQ9" id="0JR-2W-IcJ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="tapTweetButton" destination="UEr-ZG-i1K" id="q1a-9L-hgg"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GeG-K8-WSS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
